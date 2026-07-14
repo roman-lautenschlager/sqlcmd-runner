@@ -10,8 +10,7 @@
 - BASH or PowerShell
 
 ### RTFM
-
-[New sqlcmd clid for Microsoft SQL Server](https://github.com/microsoft/go-sqlcmd)
+[New sqlcmd cli for Microsoft SQL Server](https://github.com/microsoft/go-sqlcmd)
 
 [SQL Server technical documentation](https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver17)
 
@@ -32,7 +31,7 @@ export SQLCMDUSER=
 export SQLCMDPASSWORD=
 
 # Initial database catalog to connect to immediately upon authorization. Equivalent to -d
-export SQLCMDDATABASE=
+export SQLCMDDBNAME=
 
 # Workstation name reported back to SQL Server for auditing purposes. Equivalent to -H
 export SQLCMDWORKSTATION=
@@ -45,7 +44,11 @@ export SQLCMDLOGINTIMEOUT=
 ### .sql
 ```sql
 -- use environment variables in sql
-select $(VariableName)
+USE $(TARGET_DB);
+GO
+
+select '$(ENVIRONMENT_VARIABLE_NAME)'
+GO
 ```
 
 ### .run
@@ -59,7 +62,7 @@ BASH_ENV=.env ./sqlcmdrun.sh ./sql
 $env:SQLCMDSERVER=""
 $env:SQLCMDUSER=""
 $env:SQLCMDPASSWORD=""
-$env:SQLCMDDATABASE=""
+$env:SQLCMDDBNAME=""
 
 .\sqlcmdrun.sh .\sql
 ```

@@ -29,12 +29,12 @@ fi
 # find files
 SQL_FILE="";
 if [[ -f "${sql_path}" ]]; then
-  SQL_FILE=$( printf ':r "%s"\nGO' "${sql_path}" );
+  SQL_FILE=$( printf ':r %s\nGO' "${sql_path}" );
 fi
 if [[ -d "${sql_path}" ]]; then
   while read -r -d $'\0' SQLFILE; do
     if [[ -f "${SQLFILE}" ]]; then
-      SQL_FILE=$( printf '%s\n:r "%s"\nGO' "${SQL_FILE}" "${SQLFILE}" );
+      SQL_FILE=$( printf '%s\n:r %s\nGO' "${SQL_FILE}" "${SQLFILE}" );
     fi;
   done < <(find "${sql_path}" -type f -not -path '*/.*' -iname '*.sql' -print0 | sort --ignore-case --version-sort --zero-terminated);
 fi

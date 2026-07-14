@@ -23,13 +23,13 @@ try {
 # find files
 $SQL_FILE = ""
 if (Test-Path $SQL_PATH -PathType Leaf) {
-    $SQL_FILE = ":r `"$SQL_PATH`"`nGO"
+    $SQL_FILE = ":r $SQL_PATH`nGO"
 }
 if (Test-Path $SQL_PATH -PathType Container) {
     Get-ChildItem -Path $SQL_PATH -Recurse -File |
         Where-Object { $_.Attributes -notmatch 'Hidden' -and $_.Extension -imatch '\.(sql)$' } |
         Sort-Object { [regex]::Replace($_.FullName, '\d+', { $args[0].Value.PadLeft(20) }) } | # FullName |
-        ForEach-Object { $SQL_FILE += "`n:r `"$($_.FullName)`"`nGO" }
+        ForEach-Object { $SQL_FILE += "`n:r $($_.FullName)`nGO" }
 }
 
 # run all
