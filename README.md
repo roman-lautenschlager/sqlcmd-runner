@@ -54,7 +54,8 @@ GO
 ### .run
 ```sh
 # BASH
-BASH_ENV=.env ./sqlcmdrun.sh ./sql
+BASH_ENV=.env ./sqlcmdrun.sh ./path/to/all/files
+BASH_ENV=.env ./sqlcmdrun.sh ./path/to/single/file.sql
 ```
 
 ```powershell
@@ -64,5 +65,6 @@ $env:SQLCMDUSER=""
 $env:SQLCMDPASSWORD=""
 $env:SQLCMDDBNAME=""
 
-.\sqlcmdrun.sh .\sql
+.\sqlcmdrun.ps1 .\path\to\all\files
+.\sqlcmdrun.ps1 .\path\to\single\file.sql
 ```
